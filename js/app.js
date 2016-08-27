@@ -66,7 +66,7 @@ function updateBoxArray(){
     for (i = 0; i < BOARD_SIZE; i++) {
         $miniBoxArray[i] = [];
         for (j = 0; j < BOARD_SIZE; j++) {
-            $miniBoxArray[i][j] = $boxArray[Math.floor(j / 3) + (Math.floor(miniBox / 3) * 3)][j % 3 + (miniBox * 3) % 9];
+            $miniBoxArray[i][j] = $boxArray[Math.floor(j / Math.sqrt(BOARD_SIZE)) + (Math.floor(miniBox / Math.sqrt(BOARD_SIZE)) * Math.sqrt(BOARD_SIZE))][j % Math.sqrt(BOARD_SIZE) + (miniBox * Math.sqrt(BOARD_SIZE)) % 9];
             miniRow++;
         }
         miniBox++;
@@ -77,8 +77,8 @@ function isNumberCorrect(input){
     var eq = $box.index($activeBox);
     var x = Math.floor(eq / BOARD_SIZE);
     var y = eq % BOARD_SIZE;
-    var modX = Math.floor(y / 3) + (Math.floor(x / 3) * 3)
-    var modY = ((y % 3) + (x * 3)) % 9;
+    var modX = Math.floor(y / Math.sqrt(BOARD_SIZE)) + (Math.floor(x / Math.sqrt(BOARD_SIZE)) * Math.sqrt(BOARD_SIZE))
+    var modY = ((y % Math.sqrt(BOARD_SIZE)) + (x * Math.sqrt(BOARD_SIZE))) % BOARD_SIZE;
 
     //Check horizontal
     var horizontal = true;
